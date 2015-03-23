@@ -1,0 +1,28 @@
+<section id="work" class="main style3 primary">
+	<div class="content container">
+		<header>
+			<h2>My Work</h2>
+			<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
+			Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
+			arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
+		</header>
+
+			<!-- Lightbox Gallery  -->
+			<div class="container 75% gallery">
+				{% set divOpen = cycler('<div class="row 0% images">', '') %}
+				{% set divClose = cycler('', '</div>') %}
+				{% set cls = cycler('from-left', 'from-right') %}
+				{% for picture in gallery.images %}
+						{{ divOpen.next() }}
+						<div class="6u">
+							<a href="{{ picture.url }}" class="image fit {{ cls.next() }}">
+								<img src="{{ picture.thumbnail(200, 100) }}" title="" />
+							</a>
+						</div>
+						{{ divClose.next() }}
+				{% endfor %}
+			</div>
+
+			<a href="#" class="button" style="margin-top: 70px;">View more</a>
+	</div>
+</section>
