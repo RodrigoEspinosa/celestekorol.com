@@ -5,6 +5,8 @@ exports = module.exports = function (req, res) {
 	var view = new keystone.View(req, res),
 			locals = res.locals;
 
+		locals.section = 'index';
+
 	view.on('init', function (next) {
 	  var HomePage = keystone.list('HomePage').model;
 
@@ -14,6 +16,13 @@ exports = module.exports = function (req, res) {
 			locals.intro = homePage.intro;
 			locals.screenOne = homePage.screenOne;
 			locals.screenTwo = homePage.screenTwo;
+			locals.myWork = homePage.myWork;
+
+			locals.defaultPictureDescription = [
+				'Copyright (&copy;) 2015 by ',
+				'<strong>Celeste Korol</strong>. ',
+				'All Rights Reserved.'
+			].join('');
 
 			next(err);
 		});
@@ -28,8 +37,6 @@ exports = module.exports = function (req, res) {
 			if (err) console.error(err);
 
 			locals.gallery = gallery;
-
-			console.log(locals.gallery);
 
 			next(err);
 		});

@@ -4,8 +4,9 @@ require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone'),
-	cons = require('consolidate'),
-	nunjucks = require('nunjucks');
+		cons = require('consolidate'),
+		nunjucks = require('nunjucks');
+
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -29,8 +30,9 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': '%,m)@5y)K9i1p*3U$-r.H$bzZ"7Z0J))14}k9;DK*Vo$ipW|W[z52<(},XTP,RfX'
+	'cookie secret': '%,m)@5y)K9i1p*3U$-r.H$bzZ"7Z0J))14}k9;DK*Vo$ipW|W[z52<(},XTP,RfX',
 
+	'compress': true
 });
 
 // Load your project's Models
@@ -78,10 +80,10 @@ keystone.set('email locals', {
 
 keystone.set('email rules', [{
 	find: '/images/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
+	replace: (keystone.get('env') === 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
 }, {
 	find: '/keystone/',
-	replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
+	replace: (keystone.get('env') === 'production') ? 'http://www.your-server.com/keystone/' : 'http://localhost:3000/keystone/'
 }]);
 
 // Load your project's email test routes
@@ -96,6 +98,7 @@ keystone.set('nav', {
 	'enquiries': 'enquiries',
 	'users': 'users'
 });
+
 
 // Start Keystone to connect to your database and initialise the web server
 

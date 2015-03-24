@@ -1,10 +1,8 @@
 <section id="work" class="main style3 primary">
 	<div class="content container">
 		<header>
-			<h2>My Work</h2>
-			<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-			Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
-			arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
+			<h2>{{ myWork.title|default("My Work") }}</h2>
+			<p>{{ myWork.text }}</p>
 		</header>
 
 			<!-- Lightbox Gallery  -->
@@ -16,13 +14,15 @@
 						{{ divOpen.next() }}
 						<div class="6u">
 							<a href="{{ picture.url }}" class="image fit {{ cls.next() }}">
-								<img src="{{ picture.thumbnail(200, 100) }}" title="" />
+
+
+								<img src="{{ picture.thumbnail(200, 100) }}" title="{{ picture.description|default(defaultPictureDescription) }}" />
 							</a>
 						</div>
 						{{ divClose.next() }}
 				{% endfor %}
 			</div>
 
-			<a href="#" class="button" style="margin-top: 70px;">View more</a>
+			<a href="/gallery" class="button" style="margin-top: 70px;">View more</a>
 	</div>
 </section>

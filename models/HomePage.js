@@ -26,6 +26,10 @@ HomePage.add({
 		title: { type: String },
 		text: { type: Types.Html, wysiwyg: true, height: 150 }
 	},
+	myWork: {
+		title: { type: String },
+		text: { type: Types.Html, wysiwyg: true, height: 150 }
+	},
 	contact: {
 		title: { type: String },
 		text: { type: Types.Html, wysiwyg: true, height: 150 }

@@ -1,45 +1,34 @@
 {% extends "templates/layouts/big-picture.html" %}
 
 {% block content %}
-	<div class="content container 100%">
+	<div class="main style3 primary">
 		<h2>Gallery</h2>
 	</div>
 
 
 	<div class="container">
-		{% if galleries.length %}
-			{% for gallery in galleries %}
-				<h3>{{ gallery.name }}
-					{% if gallery.publishedDate %}
-						<span class="pull-right text-muted">{{ gallery._.publishedDate.format("Do MMM YYYY") }}</span>
-					{% endif %}
-				</h3>
-
-				<div class="row gallery-images">
-					{% if gallery.heroImage.exists %}
-						<div class="col-sm-4 col-md-4 gallery-image">
-							<img src="{{ gallery._.heroImage.limit(680,680) }}" class="img-rounded">
-						</div>
-						<div class="col-sm-8 col-md-8">
-							<div class="row">
-								{% for image in gallery.images %}
-									<div class="col-xs-4 col-sm-4 col-md-3 gallery-image">
-										<img src="{{ image.limit(300,300) }}" class="img-rounded">
-									</div>
-								{% endfor %}
-							</div>
-						</div>
-					{% else %}
-						{% for image in gallery.images %}
-							<div class="col-xs-6 col-sm-4 col-md-3 gallery-image">
-								<img src="{{ image.limit(300,300) }}" class="img-rounded">
-							</div>
-						{% endfor %}
-					{% endif %}
-				</div>
-			{% endfor %}
-		{% else %}
+		{% if not galleries.length %}
 			<h3 class="text-muted">There are no image galleries yet.</h3>
 		{% endif %}
+
+		{% for gallery in galleries %}
+			<h3>{{ gallery.name }}
+				{% if gallery.publishedDate %}
+					<span class="pull-right text-muted">{{ gallery._.publishedDate.format("Do MMM YYYY") }}</span>
+				{% endif %}
+			</h3>
+
+			<div class="row gallery gallery-images">
+				{% for image in gallery.images %}
+					<a href="{{ image.url }}" class="col-xs-6 col-sm-4 col-md-3 gallery-image">
+						<img src="{{ image.limit(300,300) }}">
+					</a>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
+
+	<div class="main style3">
+		<a href="/contact" class="button" style="margin-top: 70px;">Say hello!</a>
 	</div>
 {% endblock %}

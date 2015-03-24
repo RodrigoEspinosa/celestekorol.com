@@ -1,47 +1,52 @@
-{% extends "templates/layouts/default.html" %}
-
-{% block intro %}
-	<div class="container">
-		<h1>Contact Us</h1>
-	</div>
-{% endblock %}
+{% extends "templates/layouts/big-picture.html" %}
 
 {% block content %}
-	<div class="container">
-		{% if enquirySubmitted %}
-			<h3>Thanks for getting in touch.</h3>
-		{% else %}
-			<div class="row">
-				<div class="col-sm-8 col-md-6">
-					<form method="post">
-						<input type="hidden" name="action" value="contact">
-						{% set class = ( "has-error" if validationErrors.name else "" ) %}
-						<div class="form-group {{ class }}">
-							<label>
-								<span>Name</span>
-								<input type="text" name="name.full" value="{{ formData["name.full"] }}" class="form-control">
-							</label>
-						</div>
-						{% set class = ( "has-error" if validationErrors.email else "" ) %}
-						<div class="form-group {{ class }}">
-							<label>
-								<span>Email</span>
-								<input type="email" name="email" value="{{ formData.email }}" class="form-control">
-							</label>
-						</div>
-						{% set class = ( "has-error" if validationErrors.message else "" ) %}
-						<div class="form-group {{ class }}">
-							<label>
-								<span>Message</span>
-								<textarea name="message" placeholder="Leave us a message..." rows="4" class="form-control">{{ formData.message }}</textarea>
-							</label>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-primary">Send</button>
-						</div>
-					</form>
-				</div>
+	{% if enquirySubmitted %}
+		<section id="intro" class="main style1 dark fullscreen" style="background-image: url({{ intro.image.url }});">
+			<div class="content container 75%">
+				<header>
+					<h2>Thanks for getting in touch.</h2>
+				</header>
 			</div>
-		{% endif %}
-	</div>
+		</section>
+	{% else %}
+		<section id="contact" class="main style3 secondary">
+			<div class="content container">
+				<header>
+					<h2>Say Hello.</h2>
+					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.</p>
+				</header>
+					<div class="box container 75%">
+						<!-- Contact Form -->
+						<form method="post" action="/contact">
+							<input type="hidden" name="action" value="contact">
+
+							<div class="row 50%">
+								<div class="6u">
+									{% set class = ( "has-error" if validationErrors.name else "" ) %}
+									<input type="text" name="name.full" placeholder="Name" value="{{ formData["name.full"] }}" class="{{ class }}" />
+								</div>
+
+								<div class="6u">
+									{% set class = ( "has-error" if validationErrors.email else "" ) %}
+									<input type="email" name="email" placeholder="Email" value="{{ formData.email }}" class="{{ class }}" />
+								</div>
+							</div>
+							<div class="row 50%">
+								<div class="12u">
+									<textarea name="message" placeholder="Message" rows="6" class="{{ class }}">{{ formData.message }}</textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="12u">
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+			</div>
+		</section>
+	{% endif %}
 {% endblock %}

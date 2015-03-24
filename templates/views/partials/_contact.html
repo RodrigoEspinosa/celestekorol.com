@@ -8,6 +8,7 @@
 
 		<!-- Contact Form -->
 				<form method="post" action="/contact">
+					<input type="hidden" name="action" value="contact">
 					<div class="row 50%">
 						<div class="6u"><input type="text" name="name.full" placeholder="Name" value="{{ formData["name.full"] }}" /></div>
 						<div class="6u"><input type="email" name="email" placeholder="Email" value="{{ formData.email }}" /></div>

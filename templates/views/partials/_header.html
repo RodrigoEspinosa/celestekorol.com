@@ -9,8 +9,13 @@
 				<li><a href="/#intro">{{ intro.title|default("Hey!") }}</a></li>
 				<li><a href="/#one">{{ screenOne.title|default("What I Do") }}</a></li>
 				<li><a href="/#two">{{ screenTwo.title|default("Who I Am") }}</a></li>
-				<li><a href="/#work">My Work</a></li>
-				<li><a href="/#contact">{{ contact.title|default("Contact") }}</a></li>
+				{% if section == 'index' %}
+					<li><a href="#work">{{ myWork.title|default("My Work") }}</a></li>
+					<li><a href="#contact">{{ contact.title|default("Contact") }}</a></li>
+				{% else %}
+					<li><a href="/gallery">{{ myWork.title|default("My Work") }}</a></li>
+					<li><a href="/contact">{{ contact.title|default("Contact") }}</a></li>
+				{% endif %}
 			</ul>
 		</nav>
 
