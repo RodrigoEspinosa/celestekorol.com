@@ -21,7 +21,7 @@
 			<div class="row gallery gallery-images">
 				{% for image in gallery.images %}
 					<a href="{{ image.url }}" class="col-xs-6 col-sm-4 col-md-3 gallery-image">
-						<img src="{{ image.limit(300,300) }}">
+						<img src="{{ image.limit(300, 300) }}" title="{{ image.description|default(defaultPictureTitle) }}">
 					</a>
 				{% endfor %}
 			</div>

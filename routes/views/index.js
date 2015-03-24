@@ -28,19 +28,8 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
-	view.on('init', function (next) {
-	  var Gallery = keystone.list('Gallery').model;
-
-		locals.gallery = [];
-
-		Gallery.findOne({}, function (err, gallery) {
-			if (err) console.error(err);
-
-			locals.gallery = gallery;
-
-			next(err);
-		});
-	});
+	// Load the galleries by sortOrder
+	view.query('gallery', keystone.list('Gallery').model.findOne({displayOnHomePage: true}));
 
 	// Render the view
 	view.render('index');
