@@ -14,6 +14,8 @@ exports = module.exports = function(req, res) {
 		'All Rights Reserved.'
 	].join('');
 
+	view.query('homepage', keystone.list('HomePage').model.findOne());
+
 	// Load the galleries by sortOrder
 	view.query('galleries', keystone.list('Gallery').model.find().sort('sortOrder'));
 

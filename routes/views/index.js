@@ -5,28 +5,15 @@ exports = module.exports = function (req, res) {
 	var view = new keystone.View(req, res),
 			locals = res.locals;
 
-		locals.section = 'index';
+	locals.section = 'index';
 
-	view.on('init', function (next) {
-	  var HomePage = keystone.list('HomePage').model;
+	locals.defaultPictureDescription = [
+		'Copyright (&copy;) 2015 by ',
+		'<strong>Celeste Korol</strong>. ',
+		'All Rights Reserved.'
+	].join('');
 
-		HomePage.findOne({}, function (err, homePage) {
-			if (err) console.error(err);
-
-			locals.intro = homePage.intro;
-			locals.screenOne = homePage.screenOne;
-			locals.screenTwo = homePage.screenTwo;
-			locals.myWork = homePage.myWork;
-
-			locals.defaultPictureDescription = [
-				'Copyright (&copy;) 2015 by ',
-				'<strong>Celeste Korol</strong>. ',
-				'All Rights Reserved.'
-			].join('');
-
-			next(err);
-		});
-	});
+	view.query('homepage', keystone.list('HomePage').model.findOne());
 
 	// Load the galleries by sortOrder
 	view.query('gallery', keystone.list('Gallery').model.findOne({displayOnHomePage: true}));

@@ -1,28 +1,46 @@
-var gulp = require('gulp'),
-	jshint = require('gulp-jshint'),
-	jshintReporter = require('jshint-stylish'),
-	watch = require('gulp-watch');
+'use strict';
 
-/*
- * Create variables for our project paths so we can change in one place
- */
-var paths = {
-	'src': ['./models/**/*.js','./routes/**/*.js', 'keystone.js', 'package.json']
+var gulp = require('gulp'),
+		concat = require('gulp-concat'),
+		uglify = require('gulp-uglify'),
+		sourcemaps = require('gulp-sourcemaps');
+
+var PATHS = {
+	// sass: ['./scss/*.scss'],
+	js: [
+		'public/js/jquery.min.js',
+		'public/js/jquery.poptrox.min.js',
+		'public/js/jquery.scrolly.min.js',
+		'public/js/jquery.scrollex.js',
+		'public/js/skel.min.js',
+		'public/js/n33_formerize.js',
+		'public/js/init.js'
+	]
+	// html: ['./www/templates/*.html', './www/templates/**/*.html']
 };
 
+//
+// var gulp = require('gulp'),
+// 		jshint = require('gulp-jshint'),
+// 		jshintReporter = require('jshint-stylish'),
+// 		watch = require('gulp-watch');
 
-// gulp lint
-gulp.task('lint', function(){
-	gulp.src(paths.src)
-		.pipe(jshint())
-		.pipe(jshint.reporter(jshintReporter));
-
+gulp.task('js', function (done) {
+	gulp.src(PATHS.js)
+		// .pipe(sourcemaps.init())
+		.pipe(concat('app.js'))
+		.pipe(uglify({mangle: true}))
+		// .pipe(sourcemaps.write())
+		.pipe(gulp.dest('./public/js'))
+		.on('end', done);
 });
 
-// gulp watcher for lint
-gulp.task('watch:lint', function () {
-	gulp.src(paths.src)
-		.pipe(watch())
-		.pipe(jshint())
-		.pipe(jshint.reporter(jshintReporter));
-});
+// gulp.task('css', function (done) {
+// 	gulp.src(PATHS.js)
+// 		.pipe(sourcemaps.init())
+// 		.pipe(concat('app.js'))
+// 		.pipe(uglify({mangle: true}))
+// 		.pipe(sourcemaps.write())
+// 		.pipe(gulp.dest('./public/js'))
+// 		.on('end', done);
+// });

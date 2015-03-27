@@ -12,17 +12,7 @@ exports = module.exports = function(req, res) {
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
 
-	view.on('init', function (next) {
-	  var HomePage = keystone.list('HomePage').model;
-
-		HomePage.findOne({}, function (err, homePage) {
-			if (err) console.error(err);
-
-			locals.intro = homePage.intro;
-
-			next(err);
-		});
-	});
+	view.query('homepage', keystone.list('HomePage').model.findOne());
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function(next) {

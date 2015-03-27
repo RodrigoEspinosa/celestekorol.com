@@ -1,9 +1,13 @@
-<section id="intro" class="main style1 dark fullscreen" style="background-image: url({{ intro.image.url }});">
+<h1>{{ homepage.intro.image.url.limit(300, 300) }}</h1>
+
+
+
+<section id="intro" class="main style1 dark fullscreen" style="background-image: url({{ homepage.intro.image.url }});">
 	<div class="content container 75%">
 		<header>
-			<h2>{{ intro.title }}</h2>
+			<h2>{{ homepage.intro.title }}</h2>
 		</header>
-		<p>{{ intro.text }}</p>
+		<p>{{ homepage.intro.text }}</p>
 
 		<footer>
 			<a href="#one" class="button style2 down">More</a>

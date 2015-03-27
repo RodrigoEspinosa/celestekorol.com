@@ -6,15 +6,15 @@
 	<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a href="/#intro">{{ intro.title|default("Hey!") }}</a></li>
-				<li><a href="/#one">{{ screenOne.title|default("What I Do") }}</a></li>
-				<li><a href="/#two">{{ screenTwo.title|default("Who I Am") }}</a></li>
+				<li><a href="/#intro">{{ homepage.intro.title|default("Hey!") }}</a></li>
+				<li><a href="/#one">{{ homepage.screenOne.title|default("What I Do") }}</a></li>
+				<li><a href="/#two">{{ homepage.screenTwo.title|default("Who I Am") }}</a></li>
 				{% if section == 'index' %}
-					<li><a href="#work">{{ myWork.title|default("My Work") }}</a></li>
-					<li><a href="#contact">{{ contact.title|default("Contact") }}</a></li>
+					<li><a href="#work">{{ homepage.myWork.title|default("My Work") }}</a></li>
+					<li><a href="#contact">{{ homepage.contact.title|default("Contact") }}</a></li>
 				{% else %}
-					<li><a href="/gallery">{{ myWork.title|default("My Work") }}</a></li>
-					<li><a href="/contact">{{ contact.title|default("Contact") }}</a></li>
+					<li><a href="/gallery">{{ homepage.myWork.title|default("My Work") }}</a></li>
+					<li><a href="/contact">{{ homepage.contact.title|default("Contact") }}</a></li>
 				{% endif %}
 			</ul>
 		</nav>
