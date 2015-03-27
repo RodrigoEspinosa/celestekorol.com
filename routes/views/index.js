@@ -15,6 +15,8 @@ exports = module.exports = function (req, res) {
 
 	view.query('homepage', keystone.list('HomePage').model.findOne());
 
+	console.log(locals.homepage);
+
 	// Load the galleries by sortOrder
 	view.query('gallery', keystone.list('Gallery').model.findOne({displayOnHomePage: true}));
 
